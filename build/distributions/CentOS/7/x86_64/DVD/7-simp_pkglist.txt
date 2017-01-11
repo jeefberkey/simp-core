@@ -1,5 +1,5 @@
 # A list of packages required for the clean base installation of the SIMP DVD
-# based on RHEL 7-beta.
+# based on CentOS 1611 release.
 #
 # This list is simply used to keep items in the base DVD so having extra
 # packages listed here is not a problem. Anything not listed in this file will
@@ -15,6 +15,7 @@ ConsoleKit-x11
 DeviceKit-power
 GConf2
 GConf2-gtk
+GeoIP
 MAKEDEV
 ModemManager-glib
 NetworkManager
@@ -175,6 +176,7 @@ comps-extras
 control-center
 control-center-filesystem
 coolkey
+copy-jdk-configs
 coreutils
 coreutils-libs
 corosync
@@ -280,7 +282,6 @@ evolution-data-server
 exempi
 expat
 expat-devel
-facter
 felix-framework
 fence-agents
 fence-virt
@@ -298,6 +299,7 @@ fipscheck
 fipscheck-lib
 firefox
 firewalld
+firewalld-filesystem
 flac
 flac-libs
 flite
@@ -480,6 +482,8 @@ iotop
 ipmitool
 iproute
 iprutils
+ipset
+ipset-libs
 iptables
 iptables-ipv6
 iptables-services
@@ -650,6 +654,7 @@ libacl
 libaio
 libao
 libarchive
+libarchive-devel
 libart_lgpl
 libassuan
 libasyncns
@@ -748,6 +753,7 @@ libjpeg-devel
 libjpeg-turbo
 libjpeg-turbo-devel
 libjson-glib
+libkadm5
 libldb
 liblouis
 liblouis-python
@@ -767,6 +773,7 @@ libnl
 libnl3
 libnl3-cli
 libnm-gtk
+libnma
 libnotify
 liboauth
 libogg
@@ -810,8 +817,11 @@ libsoup
 libsrtp
 libss
 libssh2
+libsss_autofs
 libsss_idmap
 libsss_nss_idmap
+libsss_simpleifp
+libsss_sudo
 libstdc++
 libstdc++-devel
 libsysfs
@@ -836,6 +846,7 @@ libusbx
 libuser
 libutempter
 libuuid
+librados2
 libv4l
 libverto
 libverto-devel
@@ -891,6 +902,36 @@ man-pages
 mariadb-libs
 maven
 maven-wagon
+mcollective
+mcollective-actionpolicy-auth
+mcollective-client
+mcollective-common
+mcollective-filemgr-agent
+mcollective-filemgr-client
+mcollective-filemgr-common
+mcollective-iptables-agent
+mcollective-iptables-client
+mcollective-iptables-common
+mcollective-nettest-agent
+mcollective-nettest-client
+mcollective-nettest-common
+mcollective-nrpe-agent
+mcollective-nrpe-client
+mcollective-nrpe-common
+mcollective-package-agent
+mcollective-package-client
+mcollective-package-common
+mcollective-puppet-agent
+mcollective-puppet-client
+mcollective-puppet-common
+mcollective-service-agent
+mcollective-service-client
+mcollective-service-common
+mcollective-shell-agent
+mcollective-shell-client
+mcollective-shell-common
+mcollective-sshkey-security
+mcollective-sysctl-data
 mcpp
 mcstrans
 mdadm
@@ -910,7 +951,6 @@ microcode_ctl
 mingetty
 mlocate
 mobile-broadband-provider-info
-mod_ldap
 mod_proxy
 mod_session
 mod_ssl
@@ -990,7 +1030,6 @@ opensp
 openssh
 openssh-askpass
 openssh-clients
-openssh-ldap
 openssh-server
 openssl
 openssl-devel
@@ -1231,6 +1270,7 @@ python-deltarpm
 python-dmidecode
 python-elasticsearch
 python-ethtool
+python-firewall
 python-gudev
 python-hwdata
 python-iniparse
@@ -1245,7 +1285,6 @@ python-pycurl
 python-pyro
 python-pyudev
 python-redis
-python-rhsm
 python-setuptools
 python-simplejson
 python-six
@@ -1421,6 +1460,7 @@ sssd-ad
 sssd-client
 sssd-common
 sssd-common-pac
+sssd-dbus
 sssd-ipa
 sssd-krb5
 sssd-krb5-common
