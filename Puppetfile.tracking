@@ -8,8 +8,8 @@ mod 'simp-doc',
   :ref => 'master'
 
 mod 'simp-rsync',
-  :git => 'https://github.com/simp/simp-rsync',
-  :ref => 'master'
+  :git => 'https://github.com/trevor-vaughan/simp-rsync',
+  :ref => 'SIMP-2469'
 
 moduledir 'src/rubygems'
 
@@ -21,7 +21,7 @@ moduledir 'src/puppet/modules'
 
 mod 'bfraser-grafana',
   :git => 'https://github.com/simp/puppet-grafana',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'camptocamp-kmod',
   :git => 'https://github.com/simp/puppet-kmod.git',
@@ -29,15 +29,15 @@ mod 'camptocamp-kmod',
 
 mod 'elasticsearch-elasticsearch',
   :git => 'https://github.com/simp/puppet-elasticsearch',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'elasticsearch-logstash',
   :git => 'https://github.com/simp/puppet-logstash',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'electrical-file_concat',
   :git => 'https://github.com/simp/puppet-lib-file_concat',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'herculesteam-augeasproviders',
   :git => 'https://github.com/simp/augeasproviders',
@@ -97,23 +97,23 @@ mod 'onyxpoint-gpasswd',
 
 mod 'puppetlabs-apache',
   :git => 'https://github.com/simp/puppetlabs-apache',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-concat',
   :git => 'https://github.com/simp/puppetlabs-concat',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-inifile',
   :git => 'https://github.com/simp/puppetlabs-inifile',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-java',
   :git => 'https://github.com/simp/puppetlabs-java',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-java_ks',
   :git => 'https://github.com/simp/puppetlabs-java_ks',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-motd',
   :git => 'https://github.com/simp/puppetlabs-motd',
@@ -121,11 +121,11 @@ mod 'puppetlabs-motd',
 
 mod 'puppetlabs-mysql',
   :git => 'https://github.com/simp/puppetlabs-mysql',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-postgresql',
   :git => 'https://github.com/simp/puppetlabs-postgresql',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'puppetlabs-stdlib',
   :git => 'https://github.com/simp/puppetlabs-stdlib',
@@ -133,7 +133,7 @@ mod 'puppetlabs-stdlib',
 
 mod 'richardc-datacat',
   :git => 'https://github.com/simp/puppet-datacat',
-  :ref => 'simp-master'
+  :ref => 'master'
 
 mod 'saz-timezone',
   :git => 'https://github.com/simp/puppet-timezone',
@@ -336,28 +336,28 @@ mod 'simp-simpcat',
   :ref => 'master'
 
 mod 'simp-simp_apache',
-  :git => 'https://github.com/simp/pupmod-simp-apache',
-  :ref => 'master'
+  :git => 'https://github.com/jeannegreulich/pupmod-simp-apache',
+  :ref => 'SIMP-2462'
 
 mod 'simp-simp_elasticsearch',
   :git => 'https://github.com/nick-markowski/pupmod-simp-simp_elasticsearch',
   :ref => 'SIMP-2450'
 
 mod 'simp-simp_grafana',
-  :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
-  :ref => 'master'
+  :git => 'https://github.com/jeannegreulich/pupmod-simp-simp_grafana',
+  :ref => 'SIMP-2462'
 
 mod 'simp-simp_logstash',
-  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
-  :ref => 'master'
+  :git => 'https://github.com/jeannegreulich/pupmod-simp-simp_logstash',
+  :ref => 'SIMP-2462'
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
   :ref => 'master'
 
 mod 'simp-simp_rsyslog',
-  :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
-  :ref => 'master'
+  :git => 'https://github.com/jeannegreulich/pupmod-simp-simp_rsyslog',
+  :ref => 'SIMP-2462'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
@@ -380,8 +380,8 @@ mod 'simp-sssd',
   :ref => 'master'
 
 mod 'simp-stunnel',
-  :git => 'https://github.com/simp/pupmod-simp-stunnel',
-  :ref => 'master'
+  :git => 'https://github.com/jeannegreulich/pupmod-simp-stunnel',
+  :ref => 'SIMP-2462'
 
 mod 'simp-sudo',
   :git => 'https://github.com/jeannegreulich/pupmod-simp-sudo',

@@ -798,13 +798,13 @@ libraw1394
 librdmacm
 libref_array
 libreport-filesystem
+libreswan
 librsvg2
 libsamplerate
 libsecret
 libselinux
 libselinux-devel
 libselinux-python
-libselinux-ruby
 libselinux-utils
 libsemanage
 libsemanage-python
