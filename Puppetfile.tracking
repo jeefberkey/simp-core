@@ -140,7 +140,7 @@ mod 'saz-timezone',
   :ref => 'simp-master'
 
 mod 'simp-acpid',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-acpid',
+  :git => 'https://github.com/simp/pupmod-simp-acpid',
   :ref => 'master'
 
 mod 'simp-activemq',
