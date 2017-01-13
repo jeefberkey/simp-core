@@ -149,6 +149,7 @@ checkpolicy
 cheese-libs
 chkconfig
 chkrootkit
+chrony
 cifs-utils
 clamav
 clamav-data-empty
@@ -1517,6 +1518,7 @@ tokyocabinet
 tomcat-servlet-3.0-api
 totem-pl-parser
 tracker
+tree
 trousers
 ttmkfdir
 tuned

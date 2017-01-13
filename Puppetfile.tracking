@@ -84,7 +84,7 @@ mod 'herculesteam-augeasproviders_shellvar',
   :ref => 'master'
 
 mod 'herculesteam-augeasproviders_ssh',
-  :git => 'https://github.com/simp/augeasproviders_ssh',
+  :git => 'https://github.com/hercules-team/augeasproviders_ssh',
   :ref => 'master'
 
 mod 'herculesteam-augeasproviders_sysctl',
