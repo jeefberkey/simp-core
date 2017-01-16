@@ -42,6 +42,7 @@ Obsoletes: simp-config < %{version}-%{release}
 Buildarch: noarch
 
 Prefix: /usr/share/simp/environments/simp
+
 %description
 
 Contains template files and directories for initially setting up a SIMP server
@@ -96,6 +97,7 @@ cd -
 %config(noreplace) %{prefix}/FakeCA/usergen
 %config(noreplace) %{prefix}/hieradata/compliance_profiles/nist_800_53_rev4.yaml
 %config(noreplace) %{prefix}/hieradata/compliance_profiles/disa_stig_el7.yaml
+
 %defattr(0640,root,root,0750)
 %{_datadir}/selinux/*/%{selinux_policy}
 %{prefix}/FakeCA
@@ -208,6 +210,8 @@ fi
 - Moved the default location of keydist from the normal puppet environment and
   modulepath to /var/simp/environments/simp/site_files/pki_files/files/keydist,
   which won't be overwritten or deleted when using r10k and a control repo.
+- Added the SIMP scenarios feature, so a user can specify a class list and
+  simp_options defaults they would like to use in their implementation.
 
 * Fri Jan 06 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 6.0.0-Alpha
 - Eliminated the 'localusers' capability
