@@ -1,4 +1,4 @@
-# refs recorded for SIMP release 6.0.0 
+# refs recorded for SIMP release 6.0.0
 # vi:syntax=ruby
 
 moduledir 'src'
@@ -195,10 +195,6 @@ mod 'simp-freeradius',
   :git => 'https://github.com/jeannegreulich/pupmod-simp-freeradius',
   :ref => 'SIMP-2462'
 
-mod 'simp-ganglia',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-ganglia',
-  :ref => 'SIMP-2462'
-
 mod 'simp-gdm',
   :git => 'https://github.com/jeannegreulich/pupmod-simp-gdm',
   :ref => 'SIMP-2462'
@@ -366,10 +362,6 @@ mod 'simp-simplib',
 mod 'simp-site',
   :git => 'https://github.com/simp/pupmod-simp-site',
   :ref => 'master'
-
-mod 'simp-snmpd',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-snmpd',
-  :ref => 'SIMP-2462'
 
 mod 'simp-ssh',
   :git => 'https://github.com/jeannegreulich/pupmod-simp-ssh',
