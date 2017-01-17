@@ -8,14 +8,14 @@ mod 'simp-doc',
   :ref => 'master'
 
 mod 'simp-rsync',
-  :git => 'https://github.com/trevor-vaughan/simp-rsync',
-  :ref => 'SIMP-2469'
+  :git => 'https://github.com/simp/simp-rsync',
+  :ref => 'master'
 
 moduledir 'src/rubygems'
 
 mod 'rubygem-simp_cli',
-  :git => 'https://github.com/lnemsick-simp/rubygem-simp-cli',
-  :ref => 'SIMP-1448'
+  :git => 'https://github.com/simp/rubygem-simp-cli',
+  :ref => 'master'
 
 moduledir 'src/puppet/modules'
 
@@ -84,7 +84,7 @@ mod 'herculesteam-augeasproviders_shellvar',
   :ref => 'master'
 
 mod 'herculesteam-augeasproviders_ssh',
-  :git => 'https://github.com/hercules-team/augeasproviders_ssh',
+  :git => 'https://github.com/simp/augeasproviders_ssh',
   :ref => 'master'
 
 mod 'herculesteam-augeasproviders_sysctl',
@@ -144,28 +144,28 @@ mod 'simp-acpid',
   :ref => 'master'
 
 mod 'simp-activemq',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-activemq',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-activemq',
+  :ref => 'master'
 
 mod 'simp-aide',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-aide',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-aide',
+  :ref => 'master'
 
 mod 'simp-at',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-at',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-at',
+  :ref => 'master'
 
 mod 'simp-auditd',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-auditd',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-auditd',
+  :ref => 'master'
 
 mod 'simp-autofs',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-autofs',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-autofs',
+  :ref => 'master'
 
 mod 'simp-chkrootkit',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-chkrootkit',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-chkrootkit',
+  :ref => 'master'
 
 mod 'simp-clamav',
   :git => 'https://github.com/simp/pupmod-simp-clamav',
@@ -176,28 +176,28 @@ mod 'simp-compliance_markup',
   :ref => 'master'
 
 mod 'simp-cron',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-cron',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-cron',
+  :ref => 'master'
 
 mod 'simp-dhcp',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-dhcp',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-dhcp',
+  :ref => 'master'
 
 mod 'simp-dirtycow',
   :git => 'https://github.com/simp/pupmod-simp-dirtycow.git',
   :ref => 'master'
 
 mod 'simp-fips',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-fips',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-fips',
+  :ref => 'master'
 
 mod 'simp-freeradius',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-freeradius',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-freeradius',
+  :ref => 'master'
 
 mod 'simp-gdm',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-gdm',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-gdm',
+  :ref => 'master'
 
 mod 'simp-gnome',
   :git => 'https://github.com/simp/pupmod-simp-gnome',
@@ -208,152 +208,152 @@ mod 'simp-haveged',
   :ref => 'simp-master'
 
 mod 'simp-incron',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-incron',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-incron',
+  :ref => 'master'
 
 mod 'simp-iptables',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-iptables',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-iptables',
+  :ref => 'master'
 
 mod 'simp-issue',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-issue',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-issue',
+  :ref => 'master'
 
 mod 'simp-jenkins',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-jenkins',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-jenkins',
+  :ref => 'master'
 
 mod 'simp-journald',
   :git => 'https://github.com/simp/pupmod-simp-journald.git',
   :ref => 'simp-master'
 
 mod 'simp-krb5',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-krb5',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-krb5',
+  :ref => 'master'
 
 mod 'simp-libreswan',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-libreswan',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-libreswan',
+  :ref => 'master'
 
 mod 'simp-libvirt',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-libvirt',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-libvirt',
+  :ref => 'master'
 
 mod 'simp-logrotate',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-logrotate',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-logrotate',
+  :ref => 'master'
 
 mod 'simp-mcafee',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-mcafee',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-mcafee',
+  :ref => 'master'
 
 mod 'simp-mcollective',
   :git => 'https://github.com/simp/pupmod-simp-mcollective',
   :ref => 'simp-master'
 
 mod 'simp-mozilla',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-mozilla',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-mozilla',
+  :ref => 'master'
 
 mod 'simp-named',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-named',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-named',
+  :ref => 'master'
 
 mod 'simp-network',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-network',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-network',
+  :ref => 'master'
 
 mod 'simp-nfs',
   :git => 'https://github.com/simp/pupmod-simp-nfs',
   :ref => 'master'
 
 mod 'simp-ntpd',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-ntpd',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-ntpd',
+  :ref => 'master'
 
 mod 'simp-oddjob',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-oddjob',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-oddjob',
+  :ref => 'master'
 
 mod 'simp-openldap',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-openldap',
-  :ref => 'SIMP-2180'
+  :git => 'https://github.com/simp/pupmod-simp-openldap',
+  :ref => 'master'
 
 mod 'simp-openscap',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-openscap',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-openscap',
+  :ref => 'master'
 
 mod 'simp-pam',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-pam',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-pam',
+  :ref => 'master'
 
 mod 'simp-pki',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-pki',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-pki',
+  :ref => 'master'
 
 mod 'simp-polkit',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-polkit',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-polkit',
+  :ref => 'master'
 
 mod 'simp-postfix',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-postfix',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-postfix',
+  :ref => 'master'
 
 mod 'simp-pupmod',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-pupmod',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-pupmod',
+  :ref => 'master'
 
 mod 'simp-puppetdb',
   :git => 'https://github.com/simp/puppetlabs-puppetdb',
   :ref => 'simp-master'
 
 mod 'simp-resolv',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-resolv',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-resolv',
+  :ref => 'master'
 
 mod 'simp-rsync',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-rsync',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-rsync',
+  :ref => 'master'
 
 mod 'simp-rsyslog',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-rsyslog',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-rsyslog',
+  :ref => 'master'
 
 mod 'simp-selinux',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-selinux',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-selinux',
+  :ref => 'master'
 
 mod 'simp-simp',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-simp',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-simp',
+  :ref => 'master'
 
 mod 'simp-simpcat',
   :git => 'https://github.com/simp/pupmod-simp-simpcat',
   :ref => 'master'
 
 mod 'simp-simp_apache',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-apache',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-apache',
+  :ref => 'master'
 
 mod 'simp-simp_elasticsearch',
-  :git => 'https://github.com/nick-markowski/pupmod-simp-simp_elasticsearch',
-  :ref => 'SIMP-2450'
+  :git => 'https://github.com/simp/pupmod-simp-simp_elasticsearch',
+  :ref => 'master'
 
 mod 'simp-simp_grafana',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-simp_grafana',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-simp_grafana',
+  :ref => 'master'
 
 mod 'simp-simp_logstash',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-simp_logstash',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-simp_logstash',
+  :ref => 'master'
 
 mod 'simp-simp_options',
   :git => 'https://github.com/simp/pupmod-simp-simp_options',
   :ref => 'master'
 
 mod 'simp-simp_rsyslog',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-simp_rsyslog',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-simp_rsyslog',
+  :ref => 'master'
 
 mod 'simp-simplib',
   :git => 'https://github.com/simp/pupmod-simp-simplib',
@@ -364,68 +364,68 @@ mod 'simp-site',
   :ref => 'master'
 
 mod 'simp-ssh',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-ssh',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-ssh',
+  :ref => 'master'
 
 mod 'simp-sssd',
   :git => 'https://github.com/simp/pupmod-simp-sssd',
   :ref => 'master'
 
 mod 'simp-stunnel',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-stunnel',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-stunnel',
+  :ref => 'master'
 
 mod 'simp-sudo',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-sudo',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-sudo',
+  :ref => 'master'
 
 mod 'simp-sudosh',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-sudosh',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-sudosh',
+  :ref => 'master'
 
 mod 'simp-svckill',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-svckill',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-svckill',
+  :ref => 'master'
 
 mod 'simp-swap',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-swap',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-swap',
+  :ref => 'master'
 
 mod 'simp-tcpwrappers',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-tcpwrappers',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-tcpwrappers',
+  :ref => 'master'
 
 mod 'simp-tftpboot',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-tftpboot',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-tftpboot',
+  :ref => 'master'
 
 mod 'simp-tpm',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-tpm',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-tpm',
+  :ref => 'master'
 
 mod 'simp-tuned',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-tuned',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-tuned',
+  :ref => 'master'
 
 mod 'simp-upstart',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-upstart',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-upstart',
+  :ref => 'master'
 
 mod 'simp-vnc',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-vnc',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-vnc',
+  :ref => 'master'
 
 mod 'simp-vsftpd',
-  :git => 'https://github.com/nick-markowski/pupmod-simp-vsftpd',
-  :ref => 'SIMP-2444'
+  :git => 'https://github.com/simp/pupmod-simp-vsftpd',
+  :ref => 'master'
 
 mod 'simp-xinetd',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-xinetd',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-xinetd',
+  :ref => 'master'
 
 mod 'simp-useradd',
-  :git => 'https://github.com/jeannegreulich/pupmod-simp-useradd',
-  :ref => 'SIMP-2462'
+  :git => 'https://github.com/simp/pupmod-simp-useradd',
+  :ref => 'master'
 
 mod 'trlinkin-nsswitch',
   :git => 'https://github.com/simp/puppet-nsswitch',
