@@ -6,45 +6,27 @@ test_name 'puppetserver via rpm'
 # Find a release tarball
 def find_tarball
   tarball = ENV['BEAKER_release_tarball']
-  tarball ||= Dir.glob('spec/fixtures/SIMP*.tar.gz')
+  tarball ||= Dir.glob('spec/fixtures/SIMP*.tar.gz')[0]
   warn("Found Tarball: #{tarball}")
-  warn('Test will continue by setting up a local repository on the master from the tarball')
+  tarball
 end
 
 def tarball_yumrepos(tarball)
   master.install_package('createrepo')
-  tmpdir = create_tmpdir_on(master)
-  scp_to(master, tarball, tmpdir)
-  on(master, "cd /var/www; tar xf #{tmpdir}/SIMP*.tar.gz")
+  scp_to(master, tarball, '/root/')
+  tarball_basename = File.basename(tarball)
+  on(master, "mkdir -p /var/www && cd /var/www && tar xzf /root/#{tarball_basename}")
   on(master, 'createrepo -q -p /var/www/SIMP/noarch')
-  create_remote_file(master, '/etc/yum.repos.d/simp_filesystem.repo', <<-EOF
-    [simp-local]
+  create_remote_file(master, '/etc/yum.repos.d/simp_tarball.repo', <<-EOF.gsub(/^\s+/,'')
+    [simp-tarball]
     name=Tarball repo
-    baseurl=file:///var/www/simp/noarch
+    baseurl=file:///var/www/SIMP/noarch
     enabled=1
     gpgcheck=0
     repo_gpgcheck=0
     EOF
   )
   on(master, 'yum makecache')
-end
-
-def remove_me
-  tarball = find_tarball
-  if tarball.nil? or tarball.empty?
-    warn('='*72)
-    warn('Using Internet repos from packagecloud for testing')
-    warn('Specify a tarball with BEAKER_release_tarball or by placing one in spec/fixtures')
-    warn('='*72)
-    on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X/script.rpm.sh | bash')
-    on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
-  else
-    warn('='*72)
-    warn("Found Tarball: #{tarball}")
-    warn('Test will continue by setting up a local repository on the master from the tarball')
-    warn('='*72)
-    tarball_yumrepos(tarball)
-  end
 end
 
 describe 'install SIMP via rpm' do
@@ -61,8 +43,24 @@ describe 'install SIMP via rpm' do
     end
     it 'should set up SIMP repositories' do
       master.install_package('epel-release')
-      on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X/script.rpm.sh | bash')
+      # master.install_package('https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-3.noarch.rpm')
       on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
+
+      tarball = find_tarball
+      if tarball.nil? or tarball.empty?
+        warn('='*72)
+        warn('Using Internet repos from packagecloud for testing')
+        warn('Specify a tarball with BEAKER_release_tarball or by placing one in spec/fixtures')
+        warn('='*72)
+        on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X/script.rpm.sh | bash')
+      else
+        warn('='*72)
+        warn("Found Tarball: #{tarball}")
+        warn('Test will continue by setting up a local repository on the master from the tarball')
+        warn('='*72)
+        tarball_yumrepos(tarball)
+      end
+      on(master, 'yum makecache')
     end
   end
 
@@ -72,7 +70,6 @@ describe 'install SIMP via rpm' do
       it 'should install simp' do
         master.install_package('simp-adapter-foss')
         master.install_package('simp')
-        on(master, 'yum makecache')
       end
       it 'should run simp config' do
         # grub password: H.SxdcuyF56G75*3ww*HF#9i-eDM3Dp5
@@ -96,6 +93,9 @@ describe 'install SIMP via rpm' do
             vagrant:
           ssh::server::conf::permitrootlogin: true
           ssh::server::conf::authorizedkeysfile: .ssh/authorized_keys
+
+          classes:
+            - simp::yum::repos::internet_simp_dependencies
           EOF
         )
       end
@@ -103,6 +103,7 @@ describe 'install SIMP via rpm' do
         on(master, 'puppet config --section master set autosign true')
       end
       it 'should run simp bootstrap' do
+        # this makes me sad but I am unsure of how to fix it for now
         on(master, 'simp bootstrap --no-verbose -u --remove_ssldir > /dev/null', :accept_all_exit_codes => true)
         on(master, 'simp bootstrap --no-verbose -u --remove_ssldir > /dev/null')
         on(master, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
@@ -116,6 +117,15 @@ describe 'install SIMP via rpm' do
         on(master, 'puppet agent -t', :acceptable_exit_codes => [0,2] )
         on(master, 'puppet agent -t', :acceptable_exit_codes => [0] )
       end
+      it 'should generate agent certs' do
+        pending
+        togen = []
+        agents.each do |agent|
+          togen << agent.hostname
+        end
+        create_remote_file(master, '/var/simp/environments/simp/FakeCA/togen', togen.join("\n"))
+        on(master, 'cd /var/simp/environments/simp/FakeCA; ./gencerts_nopass')
+      end
     end
   end
 
@@ -126,7 +136,7 @@ describe 'install SIMP via rpm' do
     agents.each do |agent|
       it 'should run the agent' do
         # require 'pry';binding.pry if fact_on(agent, 'hostname') == 'agent'
-        on(agent, "puppet agent -t --ca_port 8141 --server #{master_fqdn} --tags pupmod,simp", :acceptable_exit_codes => [0,2,4,6])
+        on(agent, "puppet agent -t --ca_port 8141 --masterport 8141 --server #{master_fqdn} --tags pupmod,simp", :acceptable_exit_codes => [0,2,4,6])
         on(agent, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
         agent.reboot
         sleep(240)

@@ -126,8 +126,7 @@ simp_openldap::server::conf::rootpw: "{SSHA}NfxMc48/wlZJ9cAVzdsBcl0nvYJrggeZ"
 # The DNS domain search string.
 #
 # Remember to put these in the appropriate order for your environment!
-simp_options::dns::search:
-- <%= domain %>
+simp_options::dns::search: [<%= domain %>]
 
 # === simp_options::dns::servers ===
 # A list of DNS servers for the managed hosts.

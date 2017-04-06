@@ -1,5 +1,5 @@
 HOSTS:
-  puppet:
+  puppet.simp:
     roles:
       - server # Mandatory
       - master
@@ -10,7 +10,7 @@ HOSTS:
     hypervisor: vagrant
     vagrant_memsize: 4608
     vagrant_cpus: 2
-  agent:
+  agent.simp:
     roles:
       - agent
     platform:   el-7-x86_64
