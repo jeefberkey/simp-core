@@ -1,4 +1,4 @@
-require 'spec_helper_integration'
+require_relative 'spec_helper_rpm'
 require 'erb'
 
 test_name 'puppetserver via rpm'
@@ -33,8 +33,6 @@ describe 'install SIMP via rpm' do
 
   masters     = hosts_with_role(hosts, 'master')
   agents      = hosts_with_role(hosts, 'agent')
-  master_fqdn = fact_on(master, 'fqdn')
-  domain      = fact_on(master, 'domain')
 
   hosts.each do |host|
     it 'should set the root password' do
@@ -43,6 +41,7 @@ describe 'install SIMP via rpm' do
     end
     it 'should set up SIMP repositories' do
       master.install_package('epel-release')
+      master.install_package('http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm')
       # master.install_package('https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-3.noarch.rpm')
       on(host, 'curl -s https://packagecloud.io/install/repositories/simp-project/6_X_Dependencies/script.rpm.sh | bash')
 
@@ -79,6 +78,8 @@ describe 'install SIMP via rpm' do
         on(master, 'simp config -a /root/simp_conf.yaml --quiet')
       end
       it 'should provide default hieradata to make beaker happy' do
+        master_fqdn = master.hostname
+        domain      = fact_on(master, 'domain')
         create_remote_file(master, '/etc/puppetlabs/code/environments/simp/hieradata/default.yaml', <<-EOF
           sudo::user_specifications:
             vagrant_all:
@@ -104,6 +105,7 @@ describe 'install SIMP via rpm' do
       end
       it 'should run simp bootstrap' do
         # this makes me sad but I am unsure of how to fix it for now
+        # on(master, '/sbin/usermod -d /opt/puppetlabs/server/data/puppetserver puppet')
         on(master, 'simp bootstrap --no-verbose -u --remove_ssldir > /dev/null', :accept_all_exit_codes => true)
         on(master, 'simp bootstrap --no-verbose -u --remove_ssldir > /dev/null')
         on(master, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])

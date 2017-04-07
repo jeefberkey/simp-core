@@ -172,7 +172,7 @@ simp_options::ldap: true
 
 # === simp_options::ldap::base_dn ===
 # The Base Distinguished Name of the LDAP server.
-simp_options::ldap::base_dn: dc=camelot,dc=local
+# simp_options::ldap::base_dn: dc=camelot,dc=local
 
 # === simp_options::ldap::bind_hash ===
 # The salted LDAP Bind password hash.
@@ -241,3 +241,18 @@ simp_options::trusted_nets:
 sssd::domains:
 - LDAP
 
+# === svckill::mode ===
+# Strategy svckill should use when it encounters undeclared services
+#
+# 'enforcing' = Shut down and disable all services not listed in your
+#               manifests or the exclusion file
+# 'warning'   = Only report what undeclared services should be shut
+#               down and disabled, without actually making the changes
+#               to the system
+#
+# NOTICE: svckill is the mechanism that SIMP uses to comply with the
+# requirement that no unauthorized services are running on your system.
+# Is it HIGHLY recommended that you set this to 'enforcing'. Please be
+# aware that, if you do this, svckill will stop ALL services that are
+# not referenced in your Puppet configuration.
+svckill::mode: warning

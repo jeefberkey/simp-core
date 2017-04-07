@@ -1,4 +1,4 @@
-require 'spec_helper_integration'
+require_relative 'spec_helper_rpm'
 
 test_name 'simp::server::ldap'
 
