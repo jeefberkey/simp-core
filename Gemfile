@@ -32,6 +32,11 @@ gem 'ruby-progressbar'
 gem 'simp-build-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '>= 0.1.0')
 gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', '~> 5.0')
 #gem 'simp-rake-helpers', :path => './src/rubygems/rubygem-simp-rake-helpers'
+gem 'simplecov'
+gem 'travish'
+gem 'travis-lint'
+gem 'rspec-its'
+gem 'ipaddress'
 
 group :system_tests do
   gem 'beaker'
@@ -43,6 +48,9 @@ end
 group :debug do
   gem 'pry'
   gem 'pry-doc'
+  gem 'guard'
+  gem 'guard-shell'
+  gem 'guard-rspec'
 end
 
 #vim: set syntax=ruby:

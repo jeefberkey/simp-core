@@ -1,0 +1,5 @@
+[legacy]
+name=Legacy
+baseurl=http://vault.centos.org/7.0.1406/os/x86_64
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-7
+gpgcheck=1

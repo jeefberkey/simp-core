@@ -30,3 +30,4 @@ src/puppet/modules
 src/rsync
 src/rubygems
 src/utils/dist
+vendor/

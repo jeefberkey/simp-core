@@ -1,6 +1,7 @@
 #!/usr/bin/rake -T
 
 require 'simp/rake/pupmod/helpers'
+require 'simp/rake'
 
 Simp::Rake::Beaker.new(File.dirname(__FILE__))
 
@@ -19,3 +20,4 @@ end
 task :default do
   help
 end
+

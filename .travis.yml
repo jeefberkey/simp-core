@@ -11,7 +11,7 @@ language: ruby
 cache: bundler
 sudo: false
 
-bundler_args: --without development system_tests
+bundler_args: --without system_tests
 
 notifications:
   email: false
