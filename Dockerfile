@@ -1,11 +1,12 @@
 # # bundle package --all
 # docker build -t simp/centos7-build .
-# docker run -it -v $(pwd):/simp-core:Z -w /simp-core -e 'SIMP_BUILD_checkout=no' -e 'SIMP_PKG_verbose=yes' simp/centos7-build bundle exec rake 'build:auto[ISO]'
-# docker run -it -v $(pwd):/simp-core:Z -w /simp-core -e 'u=$(id -u)' simp/centos7-build chown -R 65535:65535 /simp-core
+# docker run -it -v $(pwd):/simp-core:Z -w /simp-core -e "usr=$(id -u)" -e 'SIMP_BUILD_checkout=no' -e 'SIMP_PKG_verbose=yes' simp/centos7-build bundle exec rake 'build:auto[ISO]'
 
 # This needs to be the *oldest* image of EL7 to preserve SELinux build compatibility
 FROM centos:7.0.1406
 
+
+# ##### YUM nonsense
 RUN yum install -y yum-utils epel-release deltarpm && \
     yum-config-manager --disable *
 
@@ -23,26 +24,23 @@ RUN yum-config-manager --enable extras && \
 RUN ln -sf /bin/true /usr/bin/systemctl && \
     rm -rf /etc/security/limits.d/*.conf
 
-# su and runuser cant do login shell, rvm needs it (from entrypoint)
-# ditch rvm or figure out how to run it without login shell
 
-##RUN echo 'export rvm_prefix="$HOME"' > /root/.rvmrc; \
-##    echo 'export rvm_path="$HOME/.rvm"' >> /root/.rvmrc
-#ENV BUNDLE_PATH /root/bundle_cache
-#RUN command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -; \
-#    curl -sSL https://get.rvm.io | bash -s stable --ruby='2.1.9' --auto-dotfiles --gems=bundler
+# ##### Ruby nonsense
 
+# Cache the gems installed during build in a place that any user can reach
 ENV BUNDLE_PATH /var/local/bundle_cache
+# Install rbenv for all users
 ENV RBENV_ROOT /usr/local/rbenv
-WORKDIR /usr/local
-RUN git clone https://github.com/rbenv/rbenv.git rbenv && \
+RUN git clone https://github.com/rbenv/rbenv.git /usr/local/rbenv && \
     git clone https://github.com/rbenv/ruby-build.git /usr/local/rbenv/plugins/ruby-build && \
-    chmod -R g+rwxXs rbenv
+    chmod -R g+rwxXs /usr/local/rbenv
 RUN sed -i 's/https/http/' /usr/local/rbenv/plugins/ruby-build/share/ruby-build/2.1.9 && \
     /usr/local/rbenv/bin/rbenv install 2.1.9 && \
     /usr/local/rbenv/bin/rbenv global 2.1.9 && \
     /usr/local/rbenv/shims/gem install bundler
 
+
+# ##### Bundle nonsense
 
 COPY Gemfile Gemfile.lock /root/
 WORKDIR /root
@@ -53,4 +51,3 @@ RUN /usr/local/rbenv/shims/bundle install --without system_tests && \
 COPY docker/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-
