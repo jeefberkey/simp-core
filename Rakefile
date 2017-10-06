@@ -16,6 +16,11 @@ task :metadata_lint do
   sh 'metadata-json-lint metadata.json'
 end
 
+multitask :build_images do
+  sh 'docker build -t simp_core/build-el7 spec/acceptance/suites/rpm_docker/nodesets/docker_el7'
+  sh 'docker build -t simp_core/build-el6 spec/acceptance/suites/rpm_docker/nodesets/docker_el6'
+end
+
 task :default do
   help
 end

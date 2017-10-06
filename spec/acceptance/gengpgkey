@@ -1,0 +1,16 @@
+%echo Generating Development GPG Key
+%echo
+Key-Type: RSA
+Key-Length: 4096
+Key-Usage: sign
+Name-Real: SIMP Development
+Name-Comment: Development key 1507297022
+Name-Email: gatekeeper@simp.development.key
+Expire-Date: 2w
+Passphrase: 56Cu+W6D19YlxEEZffa7pHF2/6vWVCfVLWpxYluktPqc/amSmOzt4QRXernn06jo0zwpMqeN6M9dI+ZuJoqcIBM0a+dtlzvXCU8KanjHj3m4hmciYMgxCDlOMG6BGyQ4wvPXU/csP7T4YncQoybrdjp2V/wy4NlFnuknlQNQGmOAw8PaODkY05Kb/NSZ8SzYR+BgY9BMPiC0g5Hsh0JhECfzS3SQ1PHk5gJ3ckMWpsgOEyQFcVZ79f+GxJpgyzZK8+5q7TsqSiH4hzcfShpLSguGis68qkrw75WwtzcYlKjkGhUZO0EY6LhwV53jZQ8GyLxzxGONWtRcYfbKT/MUFBYl8DO9jInL8Jr95bkGYL3R1Y82wKAO64D2kVks0Bcsv7Jdfik8xVsa8iEKYeIq36wz7cO3YWRQWNIuzma0TlMOXZxrhwiUjNsJLWHs0d47QZr+Q7Dm3+Biu9OcIvc16ucajs6p5+4iXCU4qfbptaQ/cweKxOOqCUqrpmrinFSlwFeroPhok+LTm0iaem9YU24jvEEDI+Vk0D0+Ff0svHW7tGIDaNQd5CfToIdVL2ciend35QQ79YHzRL88uReGNAftfrAtp1p/QaMj+rrqEVcoC2Oc8Tp5r/cr1Ig9bkgMSyHVkwQ2WG3xvDZb/3hizBucOZ0=
+%pubring pubring.gpg
+%secring secring.gpg
+# The following creates the key, so we can print "Done!" afterwards
+%commit
+%echo New GPG Development Key Created
+

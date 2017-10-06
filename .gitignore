@@ -1,5 +1,5 @@
 .*.sw?
-.bundle/
+**/.bundle/
 .r10k_cache/
 .tmp/
 .vagrant/
@@ -30,3 +30,6 @@ src/puppet/modules
 src/rsync
 src/rubygems
 src/utils/dist
+
+.gpgtemp/
+*.gpg

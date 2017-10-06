@@ -1,28 +1,91 @@
 ---
-acceptance-default-test:
-  stage: test
-  tags:
-    - beaker
-  script:
-    - rm Gemfile.lock || true
-    - bundle install --no-binstubs --path=vendor
-    - bundle exec rake beaker:suites[default]
+stages:
+  - test
+  - build_prep
+  - build
 
-acceptance-rpm_el6-test:
-  stage: test
-  tags:
-    - beaker
-  script:
-    - rm Gemfile.lock || true
-    - bundle install --no-binstubs --path=vendor
-    - bundle exec rake beaker:suites[rpm_el6]
+# default:
+#   stage: test
+#   tags:
+#     - beaker
+#   retry: 1
+#   script:
+#     - rm Gemfile.lock || true
+#     - bundle install --no-binstubs --path=vendor
+#     - bundle exec rake beaker:suites[default]
+#   after_script:
+#     - spec/acceptance/kill_vagrant.sh
+#
+# rpm_el6:
+#   stage: test
+#   tags:
+#     - beaker
+#   retry: 1
+#   script:
+#     - rm Gemfile.lock || true
+#     - bundle install --no-binstubs --path=vendor
+#     - bundle exec rake beaker:suites[rpm_el6]
+#   after_script:
+#     - spec/acceptance/kill_vagrant.sh
+#
+# rpm_el7:
+#   stage: test
+#   tags:
+#     - beaker
+#   retry: 1
+#   script:
+#     - rm Gemfile.lock || true
+#     - bundle install --no-binstubs --path=vendor
+#     - bundle exec rake beaker:suites[rpm_el7]
+#   after_script:
+#     - spec/acceptance/kill_vagrant.sh
 
-acceptance-rpm_el7-test:
-  stage: test
+
+#rpm_docker:
+#  stage: test
+#  allow_failure: true
+#  tags:
+#    - beaker
+#  retry: 1
+#  script:
+#    - rm Gemfile.lock || true
+#    - bundle install --no-binstubs --path=vendor
+#    - SIMP_PKG_verbose=yes bundle exec rake beaker:suites[rpm_docker]
+
+
+# download-iso:
+#   stage: build_prep
+#   cache:
+#     paths:
+#       - ISO
+#   script:
+#     - mkdir -p ISO
+#     - wget --quiet -N --output-document=ISO/CentOS-7-x86_64-DVD-1708.iso http://mirror.umd.edu/centos/7.4.1708/isos/x86_64/CentOS-7-x86_64-DVD-1708.iso
+
+rpm_docker-CentOS-7:
+  stage: build
+  allow_failure: true
   tags:
     - beaker
+  retry: 1
+  # cache:
+  #   paths:
+  #     - ISO
+  #   policy: pull
+  # artifacts:
+  #   paths:
+  #     - build/distributions/CentOS/7/x86_64/SIMP_ISO/
   script:
     - rm Gemfile.lock || true
     - bundle install --no-binstubs --path=vendor
-    - bundle exec rake beaker:suites[rpm_el7]
+    - bundle exec rake build_images
+   # - mkdir -p ISO
+   # - curl -s -o ISO/CentOS-7-x86_64-DVD-1708.iso http://mirror.umd.edu/centos/7.4.1708/isos/x86_64/CentOS-7-x86_64-DVD-1708.iso
+    - mkdir -p .gpgtemp
+    - gpg-agent --homedir="$(pwd)/.gpgtemp" --daemon
+    - gpg --homedir="$(pwd)/.gpgtemp" --batch --gen-key spec/acceptance/gengpgkey
+    - SIMP_BUILD_docs=yes RSYNC_NO_SELINUX_DEPS=yes SIMP_PKG_verbose=yes SIMP_BUILD_signing_key=./.gpgtemp bundle exec rake beaker:suites[rpm_docker]
+    - shopt -s globstar && ls -lh build/distributions/*/*/*/SIMP_ISO
+  # after_script:
+  #   - spec/acceptance/kill_docker.sh
 
