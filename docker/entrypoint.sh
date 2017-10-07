@@ -14,12 +14,11 @@ echo " >> Adding user builder with uid $BUILD_UID ..."
 useradd --shell /bin/bash -u $BUILD_UID builder
 
 # chown dirs needed
-echo " >> chowning $BUNDLE_PATH and /simp-core ..."
-chown -R builder:builder /simp-core
+echo " >> chowning $BUNDLE_PATH and /simp-build ..."
+chown -R builder:builder /simp-build
 chown -R builder:builder $BUNDLE_PATH
 
 # run docker cmd as the right user
 echo " >> running command as you ..."
-echo runuser -u builder -- "$@"
+echo ' >>'  runuser -u builder -- "$@"
 eval runuser -u builder -- "$@"
-

@@ -48,6 +48,7 @@ RUN /usr/local/rbenv/shims/bundle install --without system_tests && \
     chmod -R ugo+rX /var/local/bundle_cache && \
     chmod -R ugo+rX /usr/local/rbenv
 
+WORKDIR /simp-build
 COPY docker/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
