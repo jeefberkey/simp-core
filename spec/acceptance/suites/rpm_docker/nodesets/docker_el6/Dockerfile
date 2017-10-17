@@ -66,7 +66,7 @@ RUN runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc jso
 RUN runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc charlock_holmes"
 RUN runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"
 
-RUN yum clean all && rm -rf /var/cache/yum
+RUN yum clean all && rm -rf /var/cache/yum || true
 
 EXPOSE 22
 
