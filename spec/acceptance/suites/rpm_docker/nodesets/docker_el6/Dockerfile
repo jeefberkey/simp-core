@@ -4,13 +4,6 @@ FROM centos:6.6
 ENV container docker
 RUN yum clean all
 RUN yum install -y sudo openssh-server openssh-clients curl ntpdate yum-plugin-ovl
-RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
-RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
-RUN mkdir -p /var/run/sshd
-RUN echo root:root | chpasswd
-RUN sed -ri 's/^#?PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -ri 's/^#?PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
-RUN sed -ri 's/^#?UseDNS .*/UseDNS no/' /etc/ssh/sshd_config
 
 # For SELinux Builds
 RUN yum install -y yum-utils deltarpm
@@ -66,8 +59,16 @@ RUN runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc jso
 RUN runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc charlock_holmes"
 RUN runuser build_user -l -c "rvm use default; gem install --no-ri --no-rdoc posix-spawn"
 
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+RUN mkdir -p /var/run/sshd
+RUN echo root:root | chpasswd
+RUN sed -ri 's/^#?PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -ri 's/^#?PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+RUN sed -ri 's/^#?UseDNS .*/UseDNS no/' /etc/ssh/sshd_config
+
 RUN yum clean all && rm -rf /var/cache/yum || true
 
 EXPOSE 22
 
-CMD ["/usr/sbin/sshd -D"]
+CMD ["sh","-c","/etc/init.d/sshd start; tail -f /dev/null"]

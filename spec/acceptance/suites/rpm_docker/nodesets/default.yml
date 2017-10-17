@@ -5,9 +5,8 @@ HOSTS:
       - primary
     platform: el-7-x86_64
     hypervisor: docker
-    # This needs to be the *oldest* image of EL7 to preserve SELinux build compatibility
+    dockerfile: spec/acceptance/suites/rpm_docker/nodesets/docker_el7/Dockerfile
     image: simp_core/build-el7
-    docker_cmd: '/usr/sbin/sshd -D'
     docker_preserve_image: true
 
   el6-build-server:
@@ -16,7 +15,7 @@ HOSTS:
       - secondary
     platform: el-6-x86_64
     hypervisor: docker
-    # This needs to be the *oldest* image of EL6 to preserve SELinux build compatibility
+    dockerfile: spec/acceptance/suites/rpm_docker/nodesets/docker_el7/Dockerfile
     image: simp_core/build-el6
     docker_preserve_image: true
 
