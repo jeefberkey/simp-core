@@ -59,10 +59,12 @@ describe 'install puppetserver from puppet modules' do
     site_pp = <<-EOF
       # All nodes
       node default {
+        include 'simp_options'
         include 'simp'
       }
       # The puppetserver
       node /puppet/ {
+        include 'simp_options'
         include 'simp'
         include 'simp::server'
         include 'pupmod'

@@ -16,6 +16,7 @@ simp_options::selinux: true
 simp_options::stunnel: true
 simp_options::tcpwrappers: true
 simp_options::firewall: true
+simp_options::package_ensure: installed
 sssd::domains: ['LOCAL']
 
 # Settings required for acceptance test, some may be required
