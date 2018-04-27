@@ -14,6 +14,7 @@ describe 'install puppetserver from puppet modules' do
     class { 'pupmod::master':
       firewall     => true,
       trusted_nets => ['0.0.0.0/0'],
+      log_level    => 'INFO'
     }
     # pupmod::master::autosign { '*': entry => '*' }
     exec { 'set autosign':
@@ -80,11 +81,11 @@ describe 'install puppetserver from puppet modules' do
     )
 
     it 'should install the control repo' do
-      # but remove puppet/archive becuase it has environment leaking issues
-      #   at the moment and causes test failures. It is not needed in a SIMP
-      #   env, because it is used to download things from servers
-      #   see https://github.com/voxpupuli/puppet-archive/issues/320
-      on(master, 'rm -rf /etc/puppetlabs/code/environments/production/modules/archive')
+      # # but remove puppet/archive becuase it has environment leaking issues
+      # #   at the moment and causes test failures. It is not needed in a SIMP
+      # #   env, because it is used to download things from servers
+      # #   see https://github.com/voxpupuli/puppet-archive/issues/320
+      # on(master, 'rm -rf /etc/puppetlabs/code/environments/production/modules/archive')
 
       on(master, 'mkdir -p /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/{simp_autofiles,site_files/modules/pki_files/files/keydist}')
       scp_to(master, 'spec/acceptance/suites/default/files/hiera.yaml', '/etc/puppetlabs/puppet/hiera.yaml')
@@ -93,6 +94,8 @@ describe 'install puppetserver from puppet modules' do
       on(master, 'chown -R root.puppet /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
       on(master, 'chmod -R g+rX /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
       on(master, 'chown -R puppet.puppet /var/simp/environments/production/simp_autofiles')
+
+      on(master, 'puppet resource service puppetserver ensure=stopped')
       on(master, 'puppet resource service puppetserver ensure=running')
 
       on(master, 'puppet generate types', :accept_all_exit_codes => true)

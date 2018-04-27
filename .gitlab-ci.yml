@@ -31,6 +31,8 @@ default_el6:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '4.10'
   script:
     - bundle exec rake beaker:suites[default,el6_server]
   retry: 2
@@ -41,6 +43,8 @@ default_el7:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '4.10'
   script:
     - bundle exec rake beaker:suites[default,el7_server]
   retry: 2
@@ -51,6 +55,8 @@ rpm_el6:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '4.10'
   script:
     - bundle exec rake beaker:suites[install_from_rpm,el6_server]
   retry: 2
@@ -61,6 +67,8 @@ rpm_el7:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '4.10'
   script:
     - bundle exec rake beaker:suites[install_from_rpm,el7_server]
   retry: 2
@@ -71,6 +79,8 @@ forge_install_el6:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '4.10'
   script:
     - bundle exec rake beaker:suites[install_from_core_module,el6_server]
   retry: 2
@@ -81,6 +91,8 @@ forge_install_el7:
     - beaker
   <<: *cache_bundler
   <<: *setup_bundler_env
+  variables:
+    PUPPET_VERSION: '4.10'
   script:
     - bundle exec rake beaker:suites[install_from_core_module,el7_server]
   retry: 2
