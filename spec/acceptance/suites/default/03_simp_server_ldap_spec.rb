@@ -36,23 +36,12 @@ describe 'use the simp::server::ldap class to create and ldap environment' do
         create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
         create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml.to_yaml)
       end
-
-      # it 'should configure the system' do
-      #   on(master, 'puppet agent -t', :acceptable_exit_codes => [0,2,4,6])
-      #   Simp::TestHelpers.wait(30)
-      #   retry_on(master, 'puppet agent -t',
-      #     :desired_exit_codes => [0,2],
-      #     :retry_interval     => 15,
-      #     :max_retries        => 3,
-      #     :verbose            => true
-      #   )
-      # end
     end
   end
 
   context 'agents' do
     agents.each do |agent|
-      it 'should configure the system' do
+      it "should run the agent on #{agent}" do
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,

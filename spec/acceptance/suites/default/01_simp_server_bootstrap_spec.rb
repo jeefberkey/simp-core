@@ -81,12 +81,6 @@ describe 'install puppetserver from puppet modules' do
     )
 
     it 'should install the control repo' do
-      # # but remove puppet/archive becuase it has environment leaking issues
-      # #   at the moment and causes test failures. It is not needed in a SIMP
-      # #   env, because it is used to download things from servers
-      # #   see https://github.com/voxpupuli/puppet-archive/issues/320
-      # on(master, 'rm -rf /etc/puppetlabs/code/environments/production/modules/archive')
-
       on(master, 'mkdir -p /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/{simp_autofiles,site_files/modules/pki_files/files/keydist}')
       scp_to(master, 'spec/acceptance/suites/default/files/hiera.yaml', '/etc/puppetlabs/puppet/hiera.yaml')
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
@@ -104,26 +98,17 @@ describe 'install puppetserver from puppet modules' do
 
   context 'agents' do
     agents.each do |agent|
-      it 'should configure the agent' do
+      it "should configure puppet on #{agent}" do
         on(agent, "puppet config set server #{master_fqdn}")
         on(agent, 'puppet config set masterport 8140')
         on(agent, 'puppet config set ca_port 8141')
       end
       it "should run the agent on #{agent}" do
-        # In the install_from_core_module test, pluginsync causes a failure here
-        #   due to https://github.com/voxpupuli/puppet-archive/issues/320
-        #   puppet/archive is not typically in the SIMP distro
-        # Also get a cert and sign it
-        Simp::TestHelpers.wait(30)
-        on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1,4])
-        on(agent, 'puppet agent -t --noop', :acceptable_exit_codes => [0,1,4])
-        Simp::TestHelpers.wait(30)
-
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,
-          :max_retries        => 5,
+          :max_retries        => 3,
           :verbose            => true
         )
 
@@ -135,7 +120,7 @@ describe 'install puppetserver from puppet modules' do
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,
-          :max_retries        => 3,
+          :max_retries        => 2,
           :verbose            => true
         )
       end
