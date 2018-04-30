@@ -48,21 +48,21 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
         # on(master, 'chmod u=rw,g=rw,o=r /var/simp/environments/production/rsync/Global/clamav/*')
       end
 
-      it 'classify nodes' do
+      it 'modify the existing hieradata' do
         hiera = YAML.load(on(master, 'cat /etc/puppetlabs/code/environments/production/hieradata/default.yaml').stdout)
         default_yaml = hiera.merge(
           'simp_options::rsync'  => true,
           'simp_options::clamav' => true,
           'simp::scenario::base::rsync_stunnel' => master_fqdn
-        )
-        create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml.to_yaml)
+        ).to_yaml
+        create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
       end
     end
   end
 
   context 'agents' do
     agents.each do |agent|
-      it "should run the agent on #{agent}" do
+      it "should run puppet on #{agent}" do
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,

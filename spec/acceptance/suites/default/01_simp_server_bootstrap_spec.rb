@@ -78,13 +78,13 @@ describe 'install puppetserver from puppet modules' do
       'simp_options::puppet::server' => master_fqdn,
       'simp_options::puppet::ca'     => master_fqdn,
       'simp::yum::servers'           => [master_fqdn]
-    )
+    ).to_yaml
 
     it 'should install the control repo' do
       on(master, 'mkdir -p /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/{simp_autofiles,site_files/modules/pki_files/files/keydist}')
       scp_to(master, 'spec/acceptance/suites/default/files/hiera.yaml', '/etc/puppetlabs/puppet/hiera.yaml')
       create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
-      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml.to_yaml)
+      create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
       on(master, 'chown -R root.puppet /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
       on(master, 'chmod -R g+rX /etc/puppetlabs/code/environments/production/{hieradata,manifests} /var/simp/environments/production/site_files/modules/pki_files/files/keydist')
       on(master, 'chown -R puppet.puppet /var/simp/environments/production/simp_autofiles')
@@ -98,22 +98,22 @@ describe 'install puppetserver from puppet modules' do
 
   context 'agents' do
     agents.each do |agent|
-      it "should configure puppet on #{agent}" do
+      it "should configure puppet on host #{agent}" do
         on(agent, "puppet config set server #{master_fqdn}")
         on(agent, 'puppet config set masterport 8140')
         on(agent, 'puppet config set ca_port 8141')
       end
-      it "should run the agent on #{agent}" do
+      it "should run puppet on #{agent}" do
         # Run puppet and expect changes
         retry_on(agent, 'puppet agent -t',
           :desired_exit_codes => [0,2],
           :retry_interval     => 15,
-          :max_retries        => 3,
+          :max_retries        => 5,
           :verbose            => true
         )
 
+        # Reboot and wait for machine to come back up
         agent.reboot
-        # Wait for machine to come back up
         retry_on(agent, 'uptime', :retry_interval => 15 )
 
         # Wait for things to settle and stop making changes
