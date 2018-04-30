@@ -36,16 +36,19 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
       end
       it 'should mock freshclam' do
         master.install_package('clamav-update')
-        # create_remote_file(master, '/tmp/freshclam.conf', <<-EOF.gsub(/^\s+/,'')
-        #     DatabaseDirectory /var/simp/environments/production/rsync/Global/clamav
-        #     DatabaseMirror database.clamav.net
-        #     Bytecode yes
-        #   EOF
-        # )
-        # on(master, 'freshclam -u root --config-file=/tmp/freshclam.conf')
+        ## # Uncomment to use real FreshClam data from the internet
+        ## create_remote_file(master, '/tmp/freshclam.conf', <<-EOF.gsub(/^\s+/,'')
+        ##     DatabaseDirectory /var/simp/environments/production/rsync/Global/clamav
+        ##     DatabaseMirror database.clamav.net
+        ##     Bytecode yes
+        ##   EOF
+        ## )
+        ## on(master, 'freshclam -u root --config-file=/tmp/freshclam.conf')
+        ## on(master, 'chown clam.clam /var/simp/environments/production/rsync/Global/clamav/*')
+        ## on(master, 'chmod u=rw,g=rw,o=r /var/simp/environments/production/rsync/Global/clamav/*')
+
+        # Mock ClamAV data by just `touch`ing the data files
         on(master, 'touch /var/simp/environments/production/rsync/Global/clamav/{daily,bytecode,main}.cvd')
-        # on(master, 'chown clam.clam /var/simp/environments/production/rsync/Global/clamav/*')
-        # on(master, 'chmod u=rw,g=rw,o=r /var/simp/environments/production/rsync/Global/clamav/*')
       end
 
       it 'modify the existing hieradata' do
@@ -56,6 +59,7 @@ describe 'install rsync from GitHub (not rpm) and test simp::server::rsync_share
           'simp::scenario::base::rsync_stunnel' => master_fqdn
         ).to_yaml
         create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+        sleep 30
       end
     end
   end

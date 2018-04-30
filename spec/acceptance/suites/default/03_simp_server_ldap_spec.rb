@@ -35,6 +35,7 @@ describe 'use the simp::server::ldap class to create and ldap environment' do
         ).to_yaml
         create_remote_file(master, '/etc/puppetlabs/code/environments/production/manifests/site.pp', site_pp)
         create_remote_file(master, '/etc/puppetlabs/code/environments/production/hieradata/default.yaml', default_yaml)
+        sleep 30
       end
     end
   end

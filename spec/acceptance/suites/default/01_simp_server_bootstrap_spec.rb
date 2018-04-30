@@ -93,6 +93,7 @@ describe 'install puppetserver from puppet modules' do
       on(master, 'puppet resource service puppetserver ensure=running')
 
       on(master, 'puppet generate types', :accept_all_exit_codes => true)
+      sleep 30
     end
   end
 
