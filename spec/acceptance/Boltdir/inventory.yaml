@@ -1,0 +1,16 @@
+---
+groups:
+  - name: vagrant
+    config:
+      transport: ssh
+      ssh:
+        user: vagrant
+        host-key-check: false
+        run-as: root
+        tty: true
+        tmpdir: /home/vagrant
+    nodes:
+      - puppet
+      - ipa
+      - agent-el6
+      - agent-el7

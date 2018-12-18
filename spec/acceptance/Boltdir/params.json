@@ -1,0 +1,9 @@
+{
+  "server": "ipa.home",
+  "principal": "admin",
+  "password": "@dm1n=P@ssw0r",
+  "domain": "home",
+  "options": {
+    "force": null
+  }
+}
